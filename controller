@@ -1,0 +1,75 @@
+import model
+import view
+
+def update_view(number1, app, number2, ansver):
+    view.print_ans(number1, app, number2, ansver)
+
+def error():
+    view.error()
+
+def update_S(ansver):
+    view.S(ansver)
+def first_check(app):
+    if "+" == app:
+        app = "+"
+        return "+"
+    elif "-" == app:
+        app = "-"
+        return "-"
+    elif "*" == app:
+        app = "*"
+        return "*"
+    elif "/" == app:
+        app = "/"
+        return "/"
+    elif "S" == app:
+        app = "S"
+        return "S"
+    else:
+        app = "Error"
+        return "Error"
+
+def second_check(number1, number2 = 0):
+    try:
+        number1 = int(number1)
+    except:
+        return "Error"
+    try:
+        number2 = int(number2)
+    except:
+        return "Error"
+    return number1, number2
+
+def check_S(app):
+    if app=="4":
+        return 4
+    elif app=="3":
+        return 3
+    elif app=="0":
+        return 0
+    else:
+        return "Error"
+
+def S_4(number1, number2):
+    return model.S_4(number1, number2)
+def S_3(number1, number2):
+    return model.S_3(number1, number2)
+def S_0(number):
+    return model.S_0(number)
+
+def ansver(number1, app, number2):
+    if number1== "Error" and app== "Error" and number2 == "Error":
+        view.error()
+    else:
+        if app=="+":
+            ansver = model.plus(number1, number2)
+        elif app=="-":
+            ansver = model.minus(number1, number2)
+        elif app=="*":
+            ansver = model.multiplication(number1, number2)
+        elif app=="/":
+            if number1 == 0 or number2 == 0:
+                view.error()
+            else:
+                ansver = model.division(number1, number2)
+        return ansver
