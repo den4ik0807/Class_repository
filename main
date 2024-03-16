@@ -1,0 +1,48 @@
+import controller
+
+def main():
+    while True:
+        app = input("Введите апперацию или S для расчёта площади:\n")
+        if controller.first_check(app)=="Error":
+            controller.error()
+        else:
+            if app!="S":
+                number1 = input("1 число:\n")
+                number2 = input("2 число:\n")
+                if controller.second_check(number1, number2) == "Error":
+                    controller.error()
+                else:
+                    number1, number2 = controller.second_check(number1, number2)
+                    controller.update_S(controller.ansver(number1, app, number2))
+            else:
+                app=input("Для треугольника 3, для квадрата 4 , а для круга 0.\n")
+                if controller.check_S(app)=="Error":
+                    controller.error()
+                else:
+                    if controller.check_S(app)==4:
+                        number1 = input("1 число:\n")
+                        number2 = input("2 число:\n")
+                        if controller.second_check(number1, number2) == "Error":
+                            controller.error()
+                        else:
+                            number1, number2 = controller.second_check(number1, number2)
+                            controller.update_S(controller.S_4(number1, number2))
+                    elif controller.check_S(app)==3:
+                        number1 = input("Оснавание:\n")
+                        number2 = input("Высота:\n")
+                        if controller.second_check(number1, number2) == "Error":
+                            controller.error()
+                        else:
+                            number1, number2 = controller.second_check(number1, number2)
+                            controller.update_S(controller.S_3(number1, number2))
+                    elif controller.check_S(app)==0:
+                        number1 = input("Радиус:\n")
+                        if controller.second_check(number1, number2) == "Error":
+                            controller.error()
+                        else:
+                            number1, number2= controller.second_check(number1, number2)
+                            controller.update_S(controller.S_0(number1))
+
+
+if __name__ == "__main__":
+    main()
