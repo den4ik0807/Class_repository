@@ -1,0 +1,7 @@
+def print_ans(number1, app, number2, ansver):
+    print(f"{number1} {app} {number2} = {ansver}")
+
+def S(ansver):
+    print(f"S = {ansver} лабудень²")
+def error():
+    print("Error")
