@@ -1,0 +1,115 @@
+import model
+import view
+
+def first_check(app):
+    if "+" == app:
+        return "+"
+    elif "-" == app:
+        return "-"
+    elif "*" == app:
+         return "*"
+    elif "/" == app:
+        return "/"
+    elif "S" == app:
+        return "S"
+    else:
+        return "Error"
+class figures_calculator:
+    def Dfe1(self):
+        while True:
+            app = input("4 - примоуг, 3 - треугольник, 0 - круг: ")
+            if app == "4":
+                while True:
+                    try:
+                        self.num1 = int(input("Первое число: "))
+                    except:
+                        error()
+                        continue
+                    break
+                while True:
+                    try:
+                        self.num2 = input("Второе число: ")
+                    except:
+                        error()
+                        continue
+                    break
+                self.rectangle(self, self.num1, self.num2)
+            elif app == "3":
+                while True:
+                    try:
+                        self.num1 = input("Высота: ")
+                    except:
+                        error()
+                        continue
+                    break
+                while True:
+                    try:
+                        self.num2 = input("Основание: ")
+                    except:
+                        error()
+                        continue
+                    break
+                self.triangle(self, self.num1, self.num2)
+            elif app == "0":
+                while True:
+                    try:
+                        self.num1 = input("Радиус: ")
+                    except:
+                        error()
+                        continue
+                    break
+                while True:
+                    try:
+                        self.num2 = input("За что взять число Пи: ")
+                    except:
+                        error()
+                        continue
+                    break
+                self.circle(self, self.num1, self.num2)
+            else:
+                error()
+                continue
+    def rectangle(self, num1, num2):
+        update_S(model.S_4(int(num1), int(num2)))
+
+    def triangle(self, num1, num2):
+        update_S(model.S_3(int(num1), int(num2)))
+
+    def circle(self, num1, num2):
+        update_S(model.S_0(int(num1), float(num2)))
+
+class regular_stool:
+    def __init__(self, app):
+        self.app = app
+        self.num1 = input("Первое число: ")
+        self.num2 = input("Второе число: ")
+        if "+" == app:
+            self.plus(self, self.num1, self.num2)
+        elif "-" == app:
+            self.minus(self, self.num1, self.num2, app)
+        elif "*" == app:
+            self.multiplication(self, self.num1, self.num2)
+        elif "/" == app:
+            self.division(self, self.num1, self.num2)
+    def plus(self, num1, num2, app):
+        update_view(num1, app, num2, model.plus(int(num1), int(num2)))
+
+    def minus(self, num1, num2, app):
+        update_view(num1, app, num2, model.minus(int(num1), int(num2)))
+    def division(self, num1, num2, app):
+        if num1 == 0 or num2 == 0:
+            view.error()
+        else:
+            update_view(num1, app, num2, model.division(int(num1), int(num2)))
+
+    def multiplication(self, num1, num2, app):
+        update_view(num1, app, num2, model.multiplication(int(num1), int(num2)))
+
+def update_view(number1, app, number2, ansver):
+    view.print_ans(number1, app, number2, ansver)
+
+def error():
+    view.error()
+
+def update_S(ansver):
+    view.S(ansver)
