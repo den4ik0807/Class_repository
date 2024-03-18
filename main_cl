@@ -1,0 +1,17 @@
+import controller
+
+def main():
+    while True:
+        app = input("Введите апперацию или S для расчёта площади:\n")
+        app = controller.first_check(app)
+        if app == "Error":
+            controller.error()
+        else:
+            if app == "S":
+                app = controller.figures_calculator
+                app.Dfe1(app)
+            else:
+                app = controller.regular_stool
+
+if __name__ == "__main__":
+    main()
