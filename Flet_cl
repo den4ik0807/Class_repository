@@ -1,0 +1,50 @@
+import flet as ft
+df=[]
+
+def main(page):
+    global df
+    def add_clicked(e):
+        global df
+        new_list = new_task.value.split(" ")
+        num1=""
+        num2=""
+        list_app=["+", "-", "/", "*"]
+        try:
+            num1=int(new_list[0])
+        except:
+            page.add(ft.Text("Error: Number№1 is`t number"))
+        try:
+            num2=int(new_list[2])
+        except:
+            page.add(ft.Text("Error: Number№2 is`t number"))
+        if num1!="" and num2!="":
+            app = new_list[1]
+            if app in list_app or app == "STOP":
+                if app == "+":
+                    page.add(ft.Text(f"{num1} + {num2} = {num1+num2}"))
+                    df = df.append(f"{num1} + {num2} = {num1+num2}")
+                elif app == "-":
+                    page.add(ft.Text(f"{num1} - {num2} = {num1-num2}"))
+                    df = df.append(f"{num1} - {num2} = {num1 + num2}")
+                elif app == "*":
+                    page.add(ft.Text(f"{num1} * {num2} = {num1*num2}"))
+                    df = df.append(f"{num1} * {num2} = {num1 + num2}")
+                elif app == "/":
+                    try:
+                        page.add(ft.Text(f"{num1} / {num2} = {num1 / num2}"))
+                        df = df.append(f"{num1} / {num2} = {num1 + num2}")
+                    except:
+                        page.add(ft.Text("Error: You can't divide by zero"))
+                elif app == "STOP":
+                    for i in df:
+                        page.add(ft.Text(i))
+            else:
+                page.add(ft.Text("Error: The sign is not in the range"))
+        new_task.value = ""
+        new_task.focus()
+        new_task.update()
+
+    new_task = ft.TextField(label="Введите пример (через пробел или напишите '1 STOP 1' для остановки):", width=300)
+    page.add(ft.Row([new_task, ft.ElevatedButton("Enter", on_click=add_clicked)]))
+
+ft.app(target=main)
